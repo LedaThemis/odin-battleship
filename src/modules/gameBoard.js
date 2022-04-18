@@ -5,6 +5,14 @@ const gameBoard = () => {
   let _board = Array(100).fill(0);
   let _ships = [];
 
+  const placeShip = (ship, indices) => {
+    _ships.push({ ship, indices });
+
+    for (let index of indices) {
+      _board = _board.map((v, i) => (index === i ? 1 : v));
+    }
+  };
+
   const getShipAtIndex = (index) => {
     _ships.forEach(({ ship, indices }) => {
       if (indices.includes(index)) {
