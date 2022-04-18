@@ -8,6 +8,8 @@ test('update hit array after hit() call', () => {
 
   ship.hit(2);
   expect(ship.getHitArray()).toContain(0, 2);
+
+  expect(ship.getHitArray()).not.toContain(1);
 });
 
 test('ship isSunk is true after hit on all positions', () => {
