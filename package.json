@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "test": "jest /src/*.js",
+    "test": "jest ./src/tests/*.test.js",
     "watch": "jest --watch",
     "build": "webpack --mode production",
     "server": "webpack watch --mode development"
