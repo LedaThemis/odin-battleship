@@ -7,5 +7,5 @@ test('update hit array after hit() call', () => {
   expect(ship.getHitArray()).toContain(0);
 
   ship.hit(2);
-  expect(ship.getHitArray()).toContain(2);
+  expect(ship.getHitArray()).toContain(0, 2);
 });
