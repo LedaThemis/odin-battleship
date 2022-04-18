@@ -7,7 +7,7 @@ const Ship = (length) => {
 
   const getHitArray = () => {
     const hitIndicesArray = [];
-    _hitArray.filter((_, i) => hitIndicesArray.push(i));
+    _hitArray.filter((v, i) => (v === true ? hitIndicesArray.push(i) : null));
     return hitIndicesArray;
   };
 
