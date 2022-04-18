@@ -10,24 +10,30 @@ const gameBoard = () => {
       if (indices.includes(index)) {
         return { ship: ship, relativePosition: indices.indexOf(index) };
       }
-    });
+
+  const isMiss = (index, board) => {
+    return board[index] === 0;
+  };
+
+  const markMissed = (index, board) => {
+    return board.map((v, i) => (i === index ? -1 : v));
+  };
+
+  const isShip = (index, board) => {
+    return board[index] === 1;
+  };
+
+  const attackShipAtIndex = (index) => {
+    const { ship, relativePosition } = getShipAtIndex(index);
+    ship.hit(relativePosition);
   };
 
   const attack = (index) => {
-    _board = _board.map((v, i) => {
-      if (i === index) {
-        switch (v) {
-          case -1:
-            break;
-          case 0:
-            return -1;
-          case 1:
-            const { ship, relativePosition } = getShipAtIndex(index);
-            ship.hit(relativePosition);
-            break;
-        }
-      }
-    });
+    if (isMiss(index, _board)) {
+      _board = markMissed(index, _board);
+    } else if (isShip(index, _board)) {
+      attackShipAtIndex(index);
+    }
   };
 
   const getMissedArray = () => {
