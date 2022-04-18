@@ -11,9 +11,14 @@ const Ship = (length) => {
     return hitIndicesArray;
   };
 
+  const isSunk = () => {
+    return _hitArray.every((v) => v === true);
+  };
+
   return {
     getHitArray,
     hit,
+    isSunk,
   };
 };
 
