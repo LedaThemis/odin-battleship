@@ -9,3 +9,12 @@ test('update hit array after hit() call', () => {
   ship.hit(2);
   expect(ship.getHitArray()).toContain(0, 2);
 });
+
+test('ship isSunk is true after hit on all positions', () => {
+  const ship = Ship(2);
+  expect(ship.isSunk()).toBe(false);
+  ship.hit(0);
+  expect(ship.isSunk()).toBe(false);
+  ship.hit(1);
+  expect(ship.isSunk()).toBe(true);
+});
