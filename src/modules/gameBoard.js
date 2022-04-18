@@ -13,11 +13,17 @@ const gameBoard = () => {
     }
   };
 
+  const areSunk = () => {
+    return _ships.every(({ ship, _ }) => ship.isSunk() === true);
+  };
+
   const getShipAtIndex = (index) => {
-    _ships.forEach(({ ship, indices }) => {
+    for ({ ship, indices } of _ships) {
       if (indices.includes(index)) {
         return { ship: ship, relativePosition: indices.indexOf(index) };
       }
+    }
+  };
 
   const isMiss = (index, board) => {
     return board[index] === 0;
@@ -53,6 +59,8 @@ const gameBoard = () => {
   return {
     getMissedArray,
     attack,
+    placeShip,
+    areSunk,
   };
 };
 
