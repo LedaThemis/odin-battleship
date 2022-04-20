@@ -1,0 +1,13 @@
+body {
+    margin: 0;
+}
+
+
+#main-container {
+display: flex;
+justify-content: center;
+}
+
+#game-title {
+    font-size: 2rem;
+}
