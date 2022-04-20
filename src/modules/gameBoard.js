@@ -26,6 +26,10 @@ const gameBoard = () => {
     }
   };
 
+  const getShips = () => {
+    return _ships;
+  };
+
   const isMiss = (index, board) => {
     return board[index] === 0;
   };
@@ -62,6 +66,7 @@ const gameBoard = () => {
     attack,
     placeShip,
     areSunk,
+    getShips,
   };
 };
 
