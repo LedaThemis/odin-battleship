@@ -1,4 +1,3 @@
-const Gameboard = require('../modules/gameBoard');
 const Player = require('../modules/player');
 
 const attackMock = jest.fn((index) => index);
