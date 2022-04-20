@@ -9,11 +9,11 @@ const Player = (name, enemyGameBoard) => {
     _enemyGameBoard.attack(index);
   };
 
-  const computerPlay = (enemyGameBoard) => {
+  const computerPlay = () => {
     const randomIndex = generateRandomIndex();
     _playedPositions.push(randomIndex);
 
-    enemyGameBoard.attack(randomIndex);
+    _enemyGameBoard.attack(randomIndex);
   };
 
   const generateRandomIndex = () => {
