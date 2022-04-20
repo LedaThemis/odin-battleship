@@ -23,10 +23,9 @@ test('check that gameBoard calls Ship with length argument', () => {
 
 test('report all ships have sunk', () => {
   const gameBoard = GameBoard();
-  const ship2 = Ship(2);
-  const ship3 = Ship(3);
-  gameBoard.placeShip(ship2, [0, 1]);
-  gameBoard.placeShip(ship3, [4, 5, 6]);
+
+  gameBoard.placeShip(Ship, 2, [0, 1]);
+  gameBoard.placeShip(Ship, 3, [4, 5, 6]);
 
   gameBoard.attack(0);
   expect(gameBoard.areSunk()).toBe(false);
