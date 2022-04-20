@@ -10,6 +10,17 @@ test('record missed shot', () => {
   expect(gameBoard.getMissedArray()).not.toContain(2);
 });
 
+test('check that gameBoard calls Ship with length argument', () => {
+  const gameBoard = GameBoard();
+
+  const shipFactoryMock = jest.fn((length) => length);
+
+  gameBoard.placeShip(shipFactoryMock, 2, [0, 1]);
+
+  expect(shipFactoryMock.mock.calls.length).toBe(1);
+  expect(shipFactoryMock.mock.calls[0][0]).toBe(2); // first call, first argument
+});
+
 test('report all ships have sunk', () => {
   const gameBoard = GameBoard();
   const ship2 = Ship(2);
