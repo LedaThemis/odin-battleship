@@ -5,7 +5,8 @@ const gameBoard = () => {
   let _board = Array(100).fill(0);
   let _ships = [];
 
-  const placeShip = (ship, indices) => {
+  const placeShip = (shipFactory, shipLength, indices) => {
+    const ship = shipFactory(shipLength);
     _ships.push({ ship, indices });
 
     for (let index of indices) {
