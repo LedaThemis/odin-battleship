@@ -36,3 +36,14 @@ test('report all ships have sunk', () => {
   gameBoard.attack(6);
   expect(gameBoard.areSunk()).toBe(true);
 });
+
+test('check if gameBoard stores ships correctly', () => {
+  const gameBoard = GameBoard();
+
+  gameBoard.placeShip(Ship, 2, [0, 1]);
+  gameBoard.placeShip(Ship, 3, [95, 96, 97]);
+
+  expect(gameBoard.getShips().length).toBe(2);
+  expect(gameBoard.getShips()[0].indices).toEqual([0, 1]);
+  expect(gameBoard.getShips()[1].indices).toEqual([95, 96, 97]);
+});
