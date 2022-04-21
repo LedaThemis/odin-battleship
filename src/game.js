@@ -6,21 +6,23 @@ import plotBoard from './utils/plotBoard';
 import populateBoard from './utils/populateBoard';
 import resizeBoard from './utils/resizeBoard';
 
-import displayWinner from './utils/displayWinner';
+import handleWin from './utils/handleWin';
 
 const handleBoardBlockClick = (player, i) => {
+  if (determineWinner(players)) return; // game done
+
   player.play(i);
   plotBoards();
 
   if (determineWinner(players)) {
     const winner = determineWinner(players);
-    displayWinner(`${winner.getName()} won!`);
+    handleWin(winner);
   }
   computer.computerPlay();
 
   if (determineWinner(players)) {
     const winner = determineWinner(players);
-    displayWinner(`${winner.getName()} won!`);
+    handleWin(winner);
   }
 
   plotBoards();
