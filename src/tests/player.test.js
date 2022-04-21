@@ -5,7 +5,7 @@ const Ship = require('../modules/ship');
 const attackMock = jest.fn((index) => index);
 
 test('check that player calls enemyGameBoard.attack() with given index', () => {
-  const enemyGameBoardMock = { attack: attackMock };
+  const enemyGameBoardMock = { attack: attackMock, getMissedArray: () => [] };
   const player = Player('Name', enemyGameBoardMock);
   player.play(2);
 
