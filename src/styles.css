@@ -47,6 +47,13 @@ body {
     font-size: 1.25rem;
     color: rgba(0, 0, 0, 0.25);
     font-family: Poppins, sans-serif;
+
+    cursor: pointer;
+    
+    -webkit-user-select: none;         
+    -moz-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none; 
 }
 
 .missed-shot {
