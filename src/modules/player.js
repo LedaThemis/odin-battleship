@@ -18,6 +18,12 @@ const Player = (name, enemyGameBoard) => {
   const play = (index) => {
     _playedPositions.push(index);
     _enemyGameBoard.attack(index);
+
+    if (_enemyGameBoard.getMissedArray().includes(index)) {
+      setTurn(false);
+    } else {
+      setTurn(true);
+    }
   };
 
   const computerPlay = () => {
@@ -25,6 +31,12 @@ const Player = (name, enemyGameBoard) => {
     _playedPositions.push(randomIndex);
 
     _enemyGameBoard.attack(randomIndex);
+
+    if (_enemyGameBoard.getMissedArray().includes(randomIndex)) {
+      setTurn(false);
+    } else {
+      setTurn(true);
+    }
   };
 
   const generateRandomIndex = () => {
