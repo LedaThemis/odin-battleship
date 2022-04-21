@@ -15,3 +15,17 @@ test('check getName functionality', () => {
   const player = Player('Player', null);
   expect(player.getName()).toBe('Player');
 });
+
+test('check that turn is false by default', () => {
+  const player = Player('Player', null);
+
+  expect(player.getTurn()).toBe(false);
+});
+
+test('check that setTurn updates turn', () => {
+  const player = Player('Player', null);
+
+  expect(player.getTurn()).toBe(false);
+  player.setTurn(true);
+  expect(player.getTurn()).toBe(true);
+});
