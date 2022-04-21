@@ -1,4 +1,6 @@
+const GameBoard = require('../modules/gameBoard');
 const Player = require('../modules/player');
+const Ship = require('../modules/ship');
 
 const attackMock = jest.fn((index) => index);
 
@@ -28,4 +30,32 @@ test('check that setTurn updates turn', () => {
   expect(player.getTurn()).toBe(false);
   player.setTurn(true);
   expect(player.getTurn()).toBe(true);
+});
+
+test('turn should stay true after ship hit', () => {
+  const enemyGameBoard = GameBoard();
+
+  const player = Player('Player', enemyGameBoard);
+
+  enemyGameBoard.placeShip(Ship, 2, [0, 1]);
+
+  player.setTurn(true);
+  expect(player.getTurn()).toBe(true);
+
+  player.play(1);
+  expect(player.getTurn()).toBe(true);
+});
+
+test('turn should change after miss', () => {
+  const enemyGameBoard = GameBoard();
+
+  const player = Player('Player', enemyGameBoard);
+
+  enemyGameBoard.placeShip(Ship, 2, [0, 1]);
+
+  player.setTurn(true);
+  expect(player.getTurn()).toBe(true);
+
+  player.play(4);
+  expect(player.getTurn()).toBe(false);
 });
