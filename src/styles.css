@@ -40,10 +40,18 @@ body {
     -webkit-box-sizing: border-box;
 
     border: 1px solid black;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    color: rgba(0, 0, 0, 0.25);
+    font-family: Poppins, sans-serif;
 }
 
 .missed-shot {
     background-color: red;
+    
 }
 
 .correct-shot {
