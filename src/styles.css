@@ -56,11 +56,20 @@ body {
     user-select: none; 
 }
 
-.missed-shot {
-    background-color: red;
+.missed-shot::before {
+    content: 'x';
+    font-size: 2rem;
+    color: red;
+}
+
+.correct-shot::before {
+    content: '💥';
+    color: black;
+    font-size: 2rem;
     
 }
 
-.correct-shot {
-    background-color: green;
+.shown {
+    color: transparent;
+    background-color: aliceblue;
 }
