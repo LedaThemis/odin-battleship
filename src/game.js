@@ -14,10 +14,7 @@ const handleBoardBlockClick = (player, i) => {
   player.play(i);
   plotBoards();
 
-  if (determineWinner(players)) {
-    const winner = determineWinner(players);
-    handleWin(winner);
-  }
+  checkIfWin(players);
 
   if (player.getTurn()) return; // if correct shot
 
@@ -25,16 +22,11 @@ const handleBoardBlockClick = (player, i) => {
 
   while (computer.getTurn()) {
     computer.computerPlay();
+    checkIfWin(players);
   }
-
-  if (determineWinner(players)) {
-    const winner = determineWinner(players);
-    handleWin(winner);
-  }
+  plotBoards();
 
   player.setTurn(true);
-
-  plotBoards();
 };
 
 const playerBoard = GameBoard();
@@ -65,6 +57,13 @@ const determineWinner = (players) => {
     }
   }
   return false;
+};
+
+const checkIfWin = (players) => {
+  if (determineWinner(players)) {
+    const winner = determineWinner(players);
+    handleWin(winner);
+  }
 };
 
 const run = () => {
