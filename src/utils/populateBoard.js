@@ -1,4 +1,6 @@
-const createBoardBlockDiv = (id, height, width) => {
+import computeBoardBlockDimensions from './computeBoardBlockDimensions';
+
+const createBoardBlockDiv = (id, height, width, callback, isHuman) => {
   const div = document.createElement('div');
   div.dataset.key = id;
   div.classList.add('board-block');
@@ -7,17 +9,17 @@ const createBoardBlockDiv = (id, height, width) => {
   div.style.height = `${height}px`;
   div.style.width = `${width}px`;
 
+  if (isHuman) {
+    div.addEventListener('click', callback, { once: true });
+  }
+
   return div;
 };
 
-const computeBoardBlockDimensions = (boardSize, boardBlocksCount) => {
-  return { height: boardSize / Math.sqrt(boardBlocksCount), width: boardSize / Math.sqrt(boardBlocksCount) };
-};
-
-const populateBoard = (boardDiv, boardBlocksCount) => {
+const populateBoard = (boardDiv, boardBlocksCount, enemyPlayer, isHuman, handleBoardBlockClick) => {
   const { height, width } = computeBoardBlockDimensions(boardDiv.clientHeight, boardBlocksCount);
   for (let i = 0; i < boardBlocksCount; i++) {
-    const div = createBoardBlockDiv(i, height, width);
+    const div = createBoardBlockDiv(i, height, width, () => handleBoardBlockClick(enemyPlayer, i), isHuman);
     boardDiv.appendChild(div);
   }
 };
