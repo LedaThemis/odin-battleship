@@ -66,8 +66,8 @@ const run = () => {
 };
 
 const plotBoards = () => {
-  plotBoard(computerBoardDiv, computerBoard);
-  plotBoard(playerBoardDiv, playerBoard);
+  plotBoard(computerBoardDiv, computerBoard, false);
+  plotBoard(playerBoardDiv, playerBoard, true);
 };
 
 const resizeBoards = () => {
