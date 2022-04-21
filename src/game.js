@@ -24,15 +24,35 @@ const determineWinner = (players) => {
   return false;
 };
 
+const whoseTurn = (players) => {
+  for (let i = 0; i < players.length; i++) {
+    const { player, _ } = players[i];
+    if (player.getTurn()) {
+      return player;
+    }
+  }
+  if (players[0].player.getTurn() === players[0].player.getTurn()) {
+    players[0].player.setTurn(!players[0].player.getTurn());
+  }
+
+  return players[0].player; // defaults to first player provided
+};
+
+const inverseTurns = (players) => {
+  for (let i = 0; i < players.length; i++) {
+    const { player, _ } = players[i];
+    player.setTurn(!player.getTurn());
+  }
+};
+
 const run = () => {
   initializeGameBoard(playerBoard);
   initializeGameBoard(computerBoard);
 
   const player = Player('Player', computerBoard);
+  player.setTurn(true);
   const computer = Player('Computer', playerBoard);
-
-  let computerWon = playerBoard.areSunk();
-  let playerWon = computerBoard.areSunk();
+  computer.setTurn(false);
 
   const players = [
     { player: player, gameBoard: playerBoard },
@@ -42,20 +62,17 @@ const run = () => {
   const interval = setInterval(() => {
     if (determineWinner(players)) {
       clearInterval(interval);
-
       const winner = determineWinner(players);
       console.log(winner.getName());
-
       return;
     } else {
-      player.computerPlay();
-      computer.computerPlay();
+      const currentPlayer = whoseTurn(players);
+      currentPlayer.computerPlay();
+      inverseTurns(players);
+
       plotBoards();
     }
-
-    computerWon = playerBoard.areSunk();
-    playerWon = computerBoard.areSunk();
-  }, 10);
+  }, 1000);
 
   plotBoards();
 };
