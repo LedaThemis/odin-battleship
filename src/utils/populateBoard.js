@@ -2,6 +2,7 @@ const createBoardBlockDiv = (id, height, width) => {
   const div = document.createElement('div');
   div.dataset.key = id;
   div.classList.add('board-block');
+  div.innerText = id + 1;
 
   div.style.height = `${height}px`;
   div.style.width = `${width}px`;

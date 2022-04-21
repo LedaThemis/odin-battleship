@@ -6,10 +6,12 @@ const plotBoard = (boardDiv, gameBoard) => {
 
   missedShots.forEach((index) => {
     boardDiv.children[index].classList.add('missed-shot');
+    boardDiv.children[index].textContent = '';
   });
 
   correctShots.forEach((index) => {
     boardDiv.children[index].classList.add('correct-shot');
+    boardDiv.children[index].textContent = '';
   });
 };
 
