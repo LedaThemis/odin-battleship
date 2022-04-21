@@ -1,12 +1,19 @@
 const Player = (name, enemyGameBoard) => {
   let _name = name;
   let _playedPositions = [];
+  let _turn = false;
 
   const _enemyGameBoard = enemyGameBoard;
 
   const getName = () => {
     return _name;
   };
+
+  const setTurn = (newState) => {
+    _turn = !!newState; // convert non-boolean values
+  };
+
+  const getTurn = () => _turn;
 
   const play = (index) => {
     _playedPositions.push(index);
@@ -33,6 +40,8 @@ const Player = (name, enemyGameBoard) => {
     play,
     computerPlay,
     getName,
+    getTurn,
+    setTurn,
   };
 };
 
