@@ -18,12 +18,21 @@ const handleBoardBlockClick = (player, i) => {
     const winner = determineWinner(players);
     handleWin(winner);
   }
-  computer.computerPlay();
+
+  if (player.getTurn()) return; // if correct shot
+
+  computer.setTurn(true);
+
+  while (computer.getTurn()) {
+    computer.computerPlay();
+  }
 
   if (determineWinner(players)) {
     const winner = determineWinner(players);
     handleWin(winner);
   }
+
+  player.setTurn(true);
 
   plotBoards();
 };
