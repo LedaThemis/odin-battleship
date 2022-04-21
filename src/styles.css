@@ -13,6 +13,10 @@ body {
     width: 100vw;
 }
 
+#winner-status {
+    font-size: 2rem;
+}
+
 #game-title {
     font-size: 2rem;
 }
