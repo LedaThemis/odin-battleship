@@ -4,6 +4,10 @@ const Player = (name, enemyGameBoard) => {
 
   const _enemyGameBoard = enemyGameBoard;
 
+  const getName = () => {
+    return _name;
+  };
+
   const play = (index) => {
     _playedPositions.push(index);
     _enemyGameBoard.attack(index);
@@ -28,6 +32,7 @@ const Player = (name, enemyGameBoard) => {
   return {
     play,
     computerPlay,
+    getName,
   };
 };
 
