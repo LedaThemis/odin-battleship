@@ -47,3 +47,21 @@ test('check if gameBoard stores ships correctly', () => {
   expect(gameBoard.getShips()[0].indices).toEqual([0, 1]);
   expect(gameBoard.getShips()[1].indices).toEqual([95, 96, 97]);
 });
+
+test('return illegal move if missed', () => {
+  const gameBoard = GameBoard();
+
+  expect(gameBoard.isLegalMove(1)).toBe(true);
+  gameBoard.attack(1);
+  expect(gameBoard.isLegalMove(1)).toBe(false);
+
+  gameBoard.placeShip(Ship, 2, [4, 5]);
+
+  expect(gameBoard.isLegalMove(4)).toBe(true);
+  gameBoard.attack(4);
+  expect(gameBoard.isLegalMove(4)).toBe(false);
+
+  expect(gameBoard.isLegalMove(5)).toBe(true);
+  gameBoard.attack(5);
+  expect(gameBoard.isLegalMove(5)).toBe(false);
+});
