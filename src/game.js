@@ -34,7 +34,7 @@ const computerBoard = GameBoard();
 const playerBoardDiv = document.querySelector('#board-1');
 const computerBoardDiv = document.querySelector('#board-2');
 
-const player = Player('Player', computerBoard);
+const player = Player('You', computerBoard);
 const computer = Player('Computer', playerBoard);
 
 player.setTurn(true);
