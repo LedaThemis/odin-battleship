@@ -61,23 +61,12 @@ const gameBoard = () => {
     return missedIndicesArray;
   };
 
-  const isLegalMove = (index) => {
-    const shiptHitAt = (index) => {
-      const { ship, relativePosition } = getShipAtIndex(index);
-      const hitArray = ship.getHitArray();
-
-      return hitArray.includes(relativePosition);
-    };
-    return _board[index] === 1 ? !shiptHitAt(index) : _board[index] === 0;
-  };
-
   return {
     getMissedArray,
     attack,
     placeShip,
     areSunk,
     getShips,
-    isLegalMove,
   };
 };
 

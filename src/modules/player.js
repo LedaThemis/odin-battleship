@@ -36,17 +36,12 @@ const Player = (name, enemyGameBoard) => {
     return randomIndex;
   };
 
-  const isLegalMove = (index) => {
-    return _enemyGameBoard.isLegalMove(index);
-  };
-
   return {
     play,
     computerPlay,
     getName,
     getTurn,
     setTurn,
-    isLegalMove,
   };
 };
 

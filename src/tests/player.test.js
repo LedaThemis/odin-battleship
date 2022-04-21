@@ -29,14 +29,3 @@ test('check that setTurn updates turn', () => {
   player.setTurn(true);
   expect(player.getTurn()).toBe(true);
 });
-
-test('check that isLegalMove calls enemyGameBoard method', () => {
-  const isLegalMoveMock = jest.fn(() => true);
-
-  const player = Player('Player', { isLegalMove: isLegalMoveMock });
-
-  expect(player.isLegalMove(2)).toBe(true);
-
-  expect(isLegalMoveMock.mock.calls.length).toBe(1);
-  expect(isLegalMoveMock.mock.calls[0][0]).toBe(2);
-});
