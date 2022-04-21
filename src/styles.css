@@ -4,10 +4,48 @@ body {
 
 
 #main-container {
-display: flex;
-justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    text-align: center;
+
+    height: 100vh;
+    width: 100vw;
 }
 
 #game-title {
     font-size: 2rem;
+}
+
+#boards {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+
+    width: clamp(25vw, 640px, 45vw);
+    height: clamp(25vw, 640px, 45vw);
+
+    border: 1px solid black;
+}
+
+.board-block {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+
+    border: 1px solid black;
+}
+
+.missed-shot {
+    background-color: red;
+}
+
+.correct-shot {
+    background-color: green;
 }
