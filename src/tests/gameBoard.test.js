@@ -47,3 +47,11 @@ test('check if gameBoard stores ships correctly', () => {
   expect(gameBoard.getShips()[0].indices).toEqual([0, 1]);
   expect(gameBoard.getShips()[1].indices).toEqual([95, 96, 97]);
 });
+
+test('test ship moving functionality', () => {
+  const gameBoard = GameBoard();
+  gameBoard.placeShip(Ship, 2, [24, 25]);
+  expect(gameBoard.getShips()[0]['indices']).toEqual([24, 25]);
+  gameBoard.moveShip(24, [98, 99]);
+  expect(gameBoard.getShips()[0]['indices']).toEqual([98, 99]);
+});
