@@ -8,7 +8,7 @@ import resizeBoard from './utils/resizeBoard';
 
 import handleWin from './utils/handleWin';
 
-const SHIP_POSITIONS = {
+let SHIP_POSITIONS = {
   2: [0, 1],
   '3a': [20, 21, 22],
   '3b': [40, 41, 42],
