@@ -9,7 +9,6 @@ import resizeBoard from './utils/resizeBoard';
 import handleWin from './utils/handleWin';
 
 import arrayEqual from './utils/arrayEqual';
-import gameBoard from './modules/gameBoard';
 
 let SHIP_POSITIONS = {
   2: [0, 1],
