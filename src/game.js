@@ -42,9 +42,12 @@ const handleBoardBlockClick = (player, i) => {
 
 const areLegalIndices = (indices) => {
   const firstIndex = indices[0];
+  const overflow = Math.ceil((firstIndex + 1) / 10) * 10;
+  if (firstIndex + indices.length > overflow) return false;
+
   const horizontal = [...Array(indices.length).keys()].map((i) => i + firstIndex);
   const vertical = [...Array(indices.length).keys()].map((i) => i * 10 + firstIndex);
-  console.log(indices, horizontal, vertical);
+
   return arrayEqual(indices, horizontal) || arrayEqual(indices, vertical);
 };
 
@@ -57,7 +60,7 @@ const processPositionInput = (inputString, desiredLength) => {
   } else if (!inputArray.every((i) => i >= 1 && i <= 100)) {
     throw `Indices should be between 1-100`;
   } else if (!areLegalIndices(inputArray.map((i) => i - 1))) {
-    throw `Indices should be continuous`;
+    throw `Indices should be continuous, in ascending order`;
   } else {
     return inputArray.map((i) => i - 1);
   }
