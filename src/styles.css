@@ -77,3 +77,36 @@ body {
     color: transparent;
     background-color: aliceblue;
 }
+
+#position-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 0.5rem;
+}
+
+.ship-position-input-div {
+    display: grid;
+    grid-template-columns: 0.75fr 0.25fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: 
+    "LABEL LABEL"
+    "INPUT BUTTON";
+}
+
+.ship-position-input-div > label {
+    grid-area: LABEL;
+}
+
+.ship-position-input-div > input {
+    grid-area: INPUT;
+}
+
+.ship-position-input-div > button {
+    grid-area: BUTTON;
+    border: 1px solid black;
+    border-left: none;
+    background-color: transparent;
+    cursor: pointer;
+}
