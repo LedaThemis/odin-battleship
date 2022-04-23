@@ -8,6 +8,14 @@ import resizeBoard from './utils/resizeBoard';
 
 import handleWin from './utils/handleWin';
 
+const SHIP_POSITIONS = {
+  2: [0, 1],
+  '3a': [20, 21, 22],
+  '3b': [40, 41, 42],
+  4: [44, 45, 46, 47],
+  5: [95, 96, 97, 98, 99],
+};
+
 const handleBoardBlockClick = (player, i) => {
   if (determineWinner(players)) return; // game done
 
@@ -67,8 +75,8 @@ const checkIfWin = (players) => {
 };
 
 const run = () => {
-  initializeGameBoard(playerBoard);
-  initializeGameBoard(computerBoard);
+  initializeGameBoard(playerBoard, SHIP_POSITIONS);
+  initializeGameBoard(computerBoard, SHIP_POSITIONS);
 
   plotBoards();
 };
