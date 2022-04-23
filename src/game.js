@@ -11,7 +11,7 @@ import handleWin from './utils/handleWin';
 let SHIP_POSITIONS = {
   2: [0, 1],
   '3a': [20, 21, 22],
-  '3b': [40, 41, 42],
+  '3b': [40, 50, 60],
   4: [44, 45, 46, 47],
   5: [95, 96, 97, 98, 99],
 };
