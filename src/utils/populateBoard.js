@@ -17,6 +17,7 @@ const createBoardBlockDiv = (id, height, width, callback, isHuman) => {
 };
 
 const populateBoard = (boardDiv, boardBlocksCount, enemyPlayer, isHuman, handleBoardBlockClick) => {
+  boardDiv.replaceChildren();
   const { height, width } = computeBoardBlockDimensions(boardDiv.clientHeight, boardBlocksCount);
   for (let i = 0; i < boardBlocksCount; i++) {
     const div = createBoardBlockDiv(i, height, width, () => handleBoardBlockClick(enemyPlayer, i), isHuman);
