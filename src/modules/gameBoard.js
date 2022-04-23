@@ -1,3 +1,5 @@
+const Ship = require('./ship');
+
 const gameBoard = () => {
   //  0: empty
   // -1: missed
@@ -12,6 +14,33 @@ const gameBoard = () => {
     for (let index of indices) {
       _board = _board.map((v, i) => (index === i ? 1 : v));
     }
+  };
+
+  const clearBoardAtIndices = (indices) => {
+    _board = _board.map((v, i) => {
+      if (indices.includes(i)) {
+        return 0;
+      } else {
+        return v;
+      }
+    });
+  };
+
+  const removeShipAtIndex = (index) => {
+    _ships = _ships.filter(({ _, indices }) => {
+      if (indices.includes(index)) {
+        clearBoardAtIndices(indices);
+        return false;
+      } else {
+        return true;
+      }
+    });
+  };
+
+  const moveShip = (currentShipIndex, newShipIndices) => {
+    removeShipAtIndex(currentShipIndex);
+    placeShip(Ship, 2, newShipIndices);
+    return _ships;
   };
 
   const areSunk = () => {
@@ -67,6 +96,7 @@ const gameBoard = () => {
     placeShip,
     areSunk,
     getShips,
+    moveShip,
   };
 };
 
