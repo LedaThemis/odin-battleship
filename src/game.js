@@ -8,6 +8,9 @@ import resizeBoard from './utils/resizeBoard';
 
 import handleWin from './utils/handleWin';
 
+import arrayEqual from './utils/arrayEqual';
+import gameBoard from './modules/gameBoard';
+
 let SHIP_POSITIONS = {
   2: [0, 1],
   '3a': [20, 21, 22],
@@ -36,6 +39,52 @@ const handleBoardBlockClick = (player, i) => {
 
   player.setTurn(true);
 };
+
+const areLegalIndices = (indices) => {
+  const firstIndex = indices[0];
+  const horizontal = [...Array(indices.length).keys()].map((i) => i + firstIndex);
+  const vertical = [...Array(indices.length).keys()].map((i) => i * 10 + firstIndex);
+  console.log(indices, horizontal, vertical);
+  return arrayEqual(indices, horizontal) || arrayEqual(indices, vertical);
+};
+
+const processPositionInput = (inputString, desiredLength) => {
+  const inputArray = inputString.split(',').map((s) => parseInt(s));
+  if (inputArray.includes(NaN)) {
+    throw 'Wrong Input';
+  } else if (inputArray.length !== parseInt(desiredLength)) {
+    throw `There should be ${desiredLength} indices`;
+  } else if (!inputArray.every((i) => i >= 1 && i <= 100)) {
+    throw `Indices should be between 1-100`;
+  } else if (!areLegalIndices(inputArray.map((i) => i - 1))) {
+    throw `Indices should be continuous`;
+  } else {
+    return inputArray.map((i) => i - 1);
+  }
+};
+
+const handlePositionButtonSubmit = (e, key, desiredLength) => {
+  e.preventDefault();
+  const input = document.querySelector(`#ship-length-${key}`);
+  const value = input.value;
+  const processedInput = processPositionInput(value, desiredLength);
+
+  const oldIndices = SHIP_POSITIONS[key];
+  SHIP_POSITIONS[key] = processedInput;
+
+  playerBoard.moveShip(oldIndices[0], SHIP_POSITIONS[key]);
+
+  populateBoard(playerBoardDiv, 100, computer, false, handleBoardBlockClick);
+  plotBoards();
+};
+
+const positionButtons = document.querySelectorAll('.submit-position-button');
+
+positionButtons.forEach((positionButton) => {
+  positionButton.addEventListener('click', (e) =>
+    handlePositionButtonSubmit(e, positionButton.dataset.key, positionButton.dataset.length)
+  );
+});
 
 const playerBoard = GameBoard();
 const computerBoard = GameBoard();
