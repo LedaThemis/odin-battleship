@@ -51,6 +51,16 @@ const areLegalIndices = (indices) => {
   return arrayEqual(indices, horizontal) || arrayEqual(indices, vertical);
 };
 
+const checkIfOccupied = (newIndices, shipKey) => {
+  for (const k in SHIP_POSITIONS) {
+    if (`${k}` === shipKey) {
+      continue;
+    } else if (SHIP_POSITIONS[k].some((v) => newIndices.includes(v))) {
+      throw 'There is a ship there already';
+    }
+  }
+};
+
 const processPositionInput = (inputString, desiredLength) => {
   const inputArray = inputString.split(',').map((s) => parseInt(s));
   if (inputArray.includes(NaN)) {
@@ -73,6 +83,9 @@ const handlePositionButtonSubmit = (e, key, desiredLength) => {
   const processedInput = processPositionInput(value, desiredLength);
 
   const oldIndices = SHIP_POSITIONS[key];
+
+  checkIfOccupied(processedInput, key);
+
   SHIP_POSITIONS[key] = processedInput;
 
   playerBoard.moveShip(oldIndices[0], SHIP_POSITIONS[key]);
