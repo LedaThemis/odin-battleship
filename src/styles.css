@@ -90,10 +90,11 @@ body {
 .ship-position-input-div {
     display: grid;
     grid-template-columns: 0.75fr 0.25fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
     grid-template-areas: 
     "LABEL LABEL"
-    "INPUT BUTTON";
+    "INPUT BUTTON"
+    "ERROR ERROR";
 }
 
 .ship-position-input-div > label {
@@ -110,4 +111,10 @@ body {
     border-left: none;
     background-color: transparent;
     cursor: pointer;
+}
+
+.position-input-error {
+    grid-area: ERROR;
+    color: red;
+    font-size: 1rem;
 }
