@@ -90,6 +90,11 @@ const gameBoard = () => {
     return missedIndicesArray;
   };
 
+  const clear = () => {
+    _board = _board.map((v) => 0);
+    _ships = [];
+  };
+
   return {
     getMissedArray,
     attack,
@@ -97,6 +102,7 @@ const gameBoard = () => {
     areSunk,
     getShips,
     moveShip,
+    clear,
   };
 };
 
