@@ -55,3 +55,14 @@ test('test ship moving functionality', () => {
   gameBoard.moveShip(24, [98, 99]);
   expect(gameBoard.getShips()[0]['indices']).toEqual([98, 99]);
 });
+
+test('clear board on clear method call', () => {
+  const gameBoard = GameBoard();
+  gameBoard.placeShip(Ship, 2, [1, 2]);
+  gameBoard.attack(2);
+  gameBoard.attack(5);
+  gameBoard.attack(7);
+  gameBoard.clear();
+  expect(gameBoard.getMissedArray()).toEqual([]);
+  expect(gameBoard.getShips()).toEqual([]);
+});
