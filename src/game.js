@@ -20,6 +20,8 @@ import updateStatus from './utils/updateStatus';
 import showPositionForm from './utils/showPositionForm';
 import hidePositionForm from './utils/hidePositionForm';
 
+import generateComputerPositions from './utils/generateComputerPositions';
+
 let SHIP_POSITIONS = {
   2: [0, 1],
   '3a': [20, 21, 22],
@@ -27,6 +29,8 @@ let SHIP_POSITIONS = {
   4: [44, 45, 46, 47],
   5: [95, 96, 97, 98, 99],
 };
+
+let COMPUTER_POSITIONS = generateComputerPositions();
 
 let GAME_NOT_STARTED = true;
 
@@ -47,6 +51,8 @@ const handleRestartButtonClick = () => {
   showPositionForm();
 
   GAME_NOT_STARTED = true;
+
+  COMPUTER_POSITIONS = generateComputerPositions();
 
   playerBoard.clear();
   computerBoard.clear();
@@ -171,13 +177,13 @@ const checkIfWin = (players) => {
 
 const run = () => {
   initializeGameBoard(playerBoard, SHIP_POSITIONS);
-  initializeGameBoard(computerBoard, SHIP_POSITIONS);
+  initializeGameBoard(computerBoard, COMPUTER_POSITIONS);
 
   plotBoards();
 };
 
 const plotBoards = () => {
-  plotBoard(computerBoardDiv, computerBoard, false);
+  plotBoard(computerBoardDiv, computerBoard, true);
   plotBoard(playerBoardDiv, playerBoard, true);
 };
 
