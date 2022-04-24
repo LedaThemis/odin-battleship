@@ -10,6 +10,9 @@ import handleWin from './utils/handleWin';
 
 import arrayEqual from './utils/arrayEqual';
 
+import displayError from './utils/displayError';
+import hideError from './utils/hideError';
+
 let SHIP_POSITIONS = {
   2: [0, 1],
   '3a': [20, 21, 22],
@@ -79,11 +82,17 @@ const handlePositionButtonSubmit = (e, key, desiredLength) => {
   e.preventDefault();
   const input = document.querySelector(`#ship-length-${key}`);
   const value = input.value;
-  const processedInput = processPositionInput(value, desiredLength);
 
+  let processedInput;
+
+  try {
+    processedInput = processPositionInput(value, desiredLength);
+    checkIfOccupied(processedInput, key);
+  } catch (errorTxt) {
+    displayError(errorTxt, key);
+    return;
+  }
   const oldIndices = SHIP_POSITIONS[key];
-
-  checkIfOccupied(processedInput, key);
 
   SHIP_POSITIONS[key] = processedInput;
 
@@ -91,6 +100,8 @@ const handlePositionButtonSubmit = (e, key, desiredLength) => {
 
   populateBoard(playerBoardDiv, 100, computer, false, handleBoardBlockClick);
   plotBoards();
+
+  hideError(key);
 };
 
 const positionButtons = document.querySelectorAll('.submit-position-button');
