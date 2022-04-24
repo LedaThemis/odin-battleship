@@ -7,6 +7,7 @@ import populateBoard from './utils/populateBoard';
 import resizeBoard from './utils/resizeBoard';
 
 import handleWin from './utils/handleWin';
+import clearWinnerText from './utils/clearWinnerText';
 
 import arrayEqual from './utils/arrayEqual';
 
@@ -15,6 +16,7 @@ import hideError from './utils/hideError';
 
 import updateStatus from './utils/updateStatus';
 
+import showPositionForm from './utils/showPositionForm';
 import hidePositionForm from './utils/hidePositionForm';
 
 let SHIP_POSITIONS = {
@@ -34,11 +36,29 @@ const handleStartButtonClick = () => {
   GAME_NOT_STARTED = false;
   populateBoard(playerBoardDiv, 100, computer, false, handleBoardBlockClick);
   populateBoard(computerBoardDiv, 100, player, true, handleBoardBlockClick);
+  plotBoards();
+};
+
+const handleRestartButtonClick = () => {
+  updateStatus('STOPPED');
+  clearWinnerText();
+
+  showPositionForm();
+
+  GAME_NOT_STARTED = true;
+
+  playerBoard.clear();
+  computerBoard.clear();
+
+  populateBoard(playerBoardDiv, 100, computer, false, handleBoardBlockClick);
+  populateBoard(computerBoardDiv, 100, player, true, handleBoardBlockClick);
   run();
 };
 
 const startButton = document.querySelector('#start-button');
+const restartButton = document.querySelector('#restart-button');
 startButton.addEventListener('click', handleStartButtonClick);
+restartButton.addEventListener('click', handleRestartButtonClick);
 
 const handleBoardBlockClick = (player, i) => {
   if (GAME_NOT_STARTED) return;
