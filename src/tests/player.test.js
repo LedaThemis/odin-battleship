@@ -59,3 +59,20 @@ test('turn should change after miss', () => {
   player.play(4);
   expect(player.getTurn()).toBe(false);
 });
+
+test('computer should play adjacent slots after hit', () => {
+  const enemyGameBoard = GameBoard();
+  const player = Player('Player', enemyGameBoard);
+
+  enemyGameBoard.placeShip(Ship, 2, [1, 2]);
+
+  player.play(1);
+  player.computerPlay();
+  expect(enemyGameBoard.areSunk()).toBe(true);
+  player.computerPlay();
+  player.computerPlay();
+  expect(enemyGameBoard.getMissedArray()).toEqual([0, 11]);
+  player.computerPlay();
+  player.computerPlay();
+  expect(enemyGameBoard.getMissedArray()).toContain(0, 11, 3, 12);
+});
