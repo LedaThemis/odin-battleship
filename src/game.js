@@ -183,7 +183,7 @@ const run = () => {
 };
 
 const plotBoards = () => {
-  plotBoard(computerBoardDiv, computerBoard, true);
+  plotBoard(computerBoardDiv, computerBoard, false);
   plotBoard(playerBoardDiv, playerBoard, true);
 };
 
