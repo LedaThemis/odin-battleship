@@ -21,7 +21,10 @@ let SHIP_POSITIONS = {
   5: [95, 96, 97, 98, 99],
 };
 
+let GAME_NOT_STARTED = true;
+
 const handleBoardBlockClick = (player, i) => {
+  if (GAME_NOT_STARTED) return;
   if (determineWinner(players)) return; // game done
 
   player.play(i);
