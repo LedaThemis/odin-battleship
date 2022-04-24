@@ -6,10 +6,10 @@ import plotBoard from './utils/plotBoard';
 import populateBoard from './utils/populateBoard';
 import resizeBoard from './utils/resizeBoard';
 
+import areLegalIndices from './utils/areLegalIndices';
+
 import handleWin from './utils/handleWin';
 import clearWinnerText from './utils/clearWinnerText';
-
-import arrayEqual from './utils/arrayEqual';
 
 import displayError from './utils/displayError';
 import hideError from './utils/hideError';
@@ -80,17 +80,6 @@ const handleBoardBlockClick = (player, i) => {
   plotBoards();
 
   player.setTurn(true);
-};
-
-const areLegalIndices = (indices) => {
-  const firstIndex = indices[0];
-  const overflow = Math.ceil((firstIndex + 1) / 10) * 10;
-  if (firstIndex + indices.length > overflow) return false;
-
-  const horizontal = [...Array(indices.length).keys()].map((i) => i + firstIndex);
-  const vertical = [...Array(indices.length).keys()].map((i) => i * 10 + firstIndex);
-
-  return arrayEqual(indices, horizontal) || arrayEqual(indices, vertical);
 };
 
 const checkIfOccupied = (newIndices, shipKey) => {
