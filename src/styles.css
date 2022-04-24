@@ -136,3 +136,9 @@ body {
 #start-button {
     cursor: pointer;
 }
+
+.controls-button {
+    background-color: transparent;
+    border: 1px solid black;
+    cursor: pointer;
+}
