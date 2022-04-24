@@ -79,12 +79,18 @@ body {
     background-color: aliceblue;
 }
 
-#position-form {
+#position-form-div {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: center;
+}
+
+#position-form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 
     gap: 0.5rem;
+
+    width: 80%;
 }
 
 .ship-position-input-div {
