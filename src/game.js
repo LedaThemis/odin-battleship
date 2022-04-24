@@ -7,6 +7,7 @@ import populateBoard from './utils/populateBoard';
 import resizeBoard from './utils/resizeBoard';
 
 import areLegalIndices from './utils/areLegalIndices';
+import checkIfOccupied from './utils/checkIfOccupied';
 
 import handleWin from './utils/handleWin';
 import clearWinnerText from './utils/clearWinnerText';
@@ -82,16 +83,6 @@ const handleBoardBlockClick = (player, i) => {
   player.setTurn(true);
 };
 
-const checkIfOccupied = (newIndices, shipKey) => {
-  for (const k in SHIP_POSITIONS) {
-    if (`${k}` === shipKey) {
-      continue;
-    } else if (SHIP_POSITIONS[k].some((v) => newIndices.includes(v))) {
-      throw 'There is a ship there already';
-    }
-  }
-};
-
 const processPositionInput = (inputString, desiredLength) => {
   const inputArray = inputString.split(',').map((s) => parseInt(s));
   if (inputArray.includes(NaN)) {
@@ -116,7 +107,7 @@ const handlePositionButtonSubmit = (e, key, desiredLength) => {
 
   try {
     processedInput = processPositionInput(value, desiredLength);
-    checkIfOccupied(processedInput, key);
+    checkIfOccupied(processedInput, key, SHIP_POSITIONS);
   } catch (errorTxt) {
     displayError(errorTxt, key);
     return;
