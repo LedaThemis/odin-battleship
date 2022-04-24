@@ -17,8 +17,14 @@
         <h1 id="game-title">Battleship</h1>
         <p id="winner-status" style="display: none;"></p>
         <div id="boards">
-            <div id="board-1" class="board"></div>
-            <div id="board-2" class="board"></div>
+            <div class="board-wrapper">
+                <p class="board-title">Your Board</p>
+                <div id="board-1" class="board"></div>
+            </div>
+            <div class="board-wrapper">
+                <p class="board-title">Computer Board</p>
+                <div id="board-2" class="board"></div>
+            </div>
         </div>
         <div id="status-div">
             <p id="status-paragraph">STATUS: <span id="status-span">STOPPED</span></p>

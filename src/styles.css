@@ -28,6 +28,11 @@ body {
     gap: 1rem;
 }
 
+.board-title {
+    margin: 0.25rem;
+    font-size: 1.5rem;
+}
+
 .board {
     display: grid;
     grid-template-columns: repeat(10, 1fr);
