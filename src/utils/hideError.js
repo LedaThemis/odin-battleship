@@ -3,3 +3,5 @@ const hideError = (key) => {
   span.textContent = '';
   span.style.display = 'none';
 };
+
+export default hideError;
