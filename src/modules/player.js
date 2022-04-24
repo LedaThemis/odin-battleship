@@ -2,6 +2,7 @@ const Player = (name, enemyGameBoard) => {
   let _name = name;
   let _playedPositions = [];
   let _turn = false;
+  let _nextMoves = [];
 
   const _enemyGameBoard = enemyGameBoard;
 
@@ -23,19 +24,48 @@ const Player = (name, enemyGameBoard) => {
       setTurn(false);
     } else {
       setTurn(true);
+      _nextMoves = _nextMoves.concat(getNextMoves(index));
     }
   };
 
+  const getNextMoves = (index) => {
+    let nextMoves = [];
+    if ((index + 1) % 10 !== 0) {
+      // not last in row
+      nextMoves.push(index + 1);
+    }
+    if (index % 10 !== 0) {
+      // not first in row
+      nextMoves.push(index - 1);
+    }
+    if (index - 10 >= 0) {
+      nextMoves.push(index - 10);
+    }
+    if (index + 10 <= 99) {
+      nextMoves.push(index + 10);
+    }
+
+    nextMoves = nextMoves.filter((v) => !_playedPositions.includes(v));
+    return nextMoves;
+  };
+
   const computerPlay = () => {
-    const randomIndex = generateRandomIndex();
-    _playedPositions.push(randomIndex);
+    let selectedIndex;
+    if (_nextMoves.length < 1) {
+      selectedIndex = generateRandomIndex();
+    } else {
+      selectedIndex = _nextMoves.shift();
+    }
 
-    _enemyGameBoard.attack(randomIndex);
+    _playedPositions.push(selectedIndex);
 
-    if (_enemyGameBoard.getMissedArray().includes(randomIndex)) {
+    _enemyGameBoard.attack(selectedIndex);
+
+    if (_enemyGameBoard.getMissedArray().includes(selectedIndex)) {
       setTurn(false);
     } else {
       setTurn(true);
+      _nextMoves = _nextMoves.concat(getNextMoves(selectedIndex));
     }
   };
 
