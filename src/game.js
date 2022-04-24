@@ -13,6 +13,10 @@ import arrayEqual from './utils/arrayEqual';
 import displayError from './utils/displayError';
 import hideError from './utils/hideError';
 
+import updateStatus from './utils/updateStatus';
+
+import hidePositionForm from './utils/hidePositionForm';
+
 let SHIP_POSITIONS = {
   2: [0, 1],
   '3a': [20, 21, 22],
@@ -22,6 +26,19 @@ let SHIP_POSITIONS = {
 };
 
 let GAME_NOT_STARTED = true;
+
+const handleStartButtonClick = () => {
+  updateStatus('STARTED');
+  hidePositionForm();
+
+  GAME_NOT_STARTED = false;
+  populateBoard(playerBoardDiv, 100, computer, false, handleBoardBlockClick);
+  populateBoard(computerBoardDiv, 100, player, true, handleBoardBlockClick);
+  run();
+};
+
+const startButton = document.querySelector('#start-button');
+startButton.addEventListener('click', handleStartButtonClick);
 
 const handleBoardBlockClick = (player, i) => {
   if (GAME_NOT_STARTED) return;
