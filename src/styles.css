@@ -142,3 +142,7 @@ body {
     border: 1px solid black;
     cursor: pointer;
 }
+
+#status-paragraph {
+    margin: 0;
+}
